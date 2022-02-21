@@ -66,42 +66,48 @@ class _SettingsState extends State<Settings> {
           ),
           Text(""),
           Text(""),
-          const SettingsButton(null, Color(0xff455A64), "-", -1),
+          SettingsButton(
+              null, const Color(0xff455A64), "-", -1, updateSettings, WORKTIME),
           TextField(
             style: textStyle,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
             controller: textWork,
           ),
-          const SettingsButton(null, Color(0xff009688), "+", 1),
+          SettingsButton(
+              null, const Color(0xff009688), "+", 1, updateSettings, WORKTIME),
           Text(
             "Short",
             style: textStyle,
           ),
-          Text(""),
-          Text(""),
-          const SettingsButton(null, Color(0xff455A64), "-", -1),
+          const Text(""),
+          const Text(""),
+          SettingsButton(null, const Color(0xff455A64), "-", -1, updateSettings,
+              SHROTBREAK),
           TextField(
             style: textStyle,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
             controller: textShort,
           ),
-          const SettingsButton(null, Color(0xff009688), "+", 1),
+          SettingsButton(null, const Color(0xff009688), "+", 1, updateSettings,
+              SHROTBREAK),
           Text(
             "Long",
             style: textStyle,
           ),
-          Text(""),
-          Text(""),
-          const SettingsButton(null, Color(0xff455A64), "-", -1),
+          const Text(""),
+          const Text(""),
+          SettingsButton(null, const Color(0xff455A64), "-", -1, updateSettings,
+              LONGBREAK),
           TextField(
             style: textStyle,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
             controller: textLong,
           ),
-          const SettingsButton(null, Color(0xff009688), "+", 1),
+          SettingsButton(
+              null, const Color(0xff009688), "+", 1, updateSettings, LONGBREAK),
         ],
         padding: const EdgeInsets.all(20),
       ),
@@ -113,6 +119,16 @@ class _SettingsState extends State<Settings> {
     int? workTime = prefs.getInt(WORKTIME);
     int? shortBreak = prefs.getInt(SHROTBREAK);
     int? longBreak = prefs.getInt(LONGBREAK);
+
+    if (workTime == null) {
+      await prefs.setInt(WORKTIME, 30);
+    }
+    if (shortBreak == null) {
+      await prefs.setInt(SHROTBREAK, 5);
+    }
+    if (longBreak == null) {
+      await prefs.setInt(LONGBREAK, 15);
+    }
 
     setState(() {
       if (workTime != null) {

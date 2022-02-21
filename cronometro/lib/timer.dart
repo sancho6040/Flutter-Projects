@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:cronometro/TimerModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CountDownTimer {
   double _radius = 1;
@@ -10,6 +11,10 @@ class CountDownTimer {
   late Timer timer;
   late Duration _time;
   late Duration _fulltime;
+
+  static const String WORKTIME = "worktime";
+  static const String SHROTBREAK = "shortbreak";
+  static const String LONGBREAK = "longbreak";
 
   Stream<TimerModel> stream() async* {
     //con * devuelve un stream, sin el devuelve un Future(promesa en js)
@@ -37,7 +42,8 @@ class CountDownTimer {
     }
   }
 
-  void startWork() {
+  void startWork() async {
+    await readSettings();
     _radius = 1;
     _time = Duration(minutes: work, seconds: 0);
     _fulltime = _time;
@@ -47,6 +53,18 @@ class CountDownTimer {
     _radius = 1;
     _time = Duration(minutes: isShort ? shortBreak : longBreak, seconds: 0);
     _fulltime = _time;
+  }
+
+  Future readSettings() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int? workTime = prefs.getInt(WORKTIME);
+    int? shortBreak = prefs.getInt(SHROTBREAK);
+    int? longBreak = prefs.getInt(LONGBREAK);
+
+    // work = workTime != null ? workTime : 30;
+    work = workTime ?? 30;
+    this.shortBreak = shortBreak ?? 5;
+    this.longBreak = longBreak ?? 20;
   }
 
   String returnTime(Duration t) {
