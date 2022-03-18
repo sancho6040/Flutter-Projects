@@ -13,7 +13,7 @@ class ListItem {
       'idList': idList,
       'name': name,
       'quantity': quantity,
-      'note': note
+      'note': note,
     };
   }
 }
