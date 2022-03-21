@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:events_app/models/event_detail.dart';
+import 'package:events_app/models/favorite.dart';
 import 'package:events_app/screens/login_screen.dart';
 import 'package:events_app/shared/authentication.dart';
+import 'package:events_app/shared/firestore_helper.dart';
 import 'package:flutter/material.dart';
 
 class EventScreen extends StatelessWidget {
-  const EventScreen({Key? key}) : super(key: key);
+  const EventScreen(Key? key, this.uid) : super(key: key);
+
+  final String uid;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +17,7 @@ class EventScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Event"),
+        title: const Text("Event"),
         actions: [
           IconButton(
               onPressed: () {
@@ -25,13 +29,15 @@ class EventScreen extends StatelessWidget {
               icon: const Icon(Icons.exit_to_app))
         ],
       ),
-      body: EventList(),
+      body: EventList(uid, key),
     );
   }
 }
 
 class EventList extends StatefulWidget {
-  const EventList({Key? key}) : super(key: key);
+  final String uid;
+
+  const EventList(this.uid, Key? key) : super(key: key);
 
   @override
   State<EventList> createState() => _EventListState();
@@ -40,6 +46,7 @@ class EventList extends StatefulWidget {
 class _EventListState extends State<EventList> {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   List<EventDetail> details = [];
+  List<Favorite> favorites = [];
 
   @override
   void initState() {
@@ -47,6 +54,12 @@ class _EventListState extends State<EventList> {
       getDetailsList().then((data) {
         setState(() {
           details = data;
+        });
+      });
+
+      FirestoreHelper.getUserFavorites(widget.uid).then((data) {
+        setState(() {
+          favorites = data;
         });
       });
     }
@@ -60,9 +73,17 @@ class _EventListState extends State<EventList> {
       itemBuilder: (context, position) {
         String subtitle =
             "Date: ${details[position].date} - start: ${details[position].startTime} - End: ${details[position].endTime}";
+        Color starColor =
+            isUserFavorite(details[position].id!) ? Colors.amber : Colors.grey;
         return ListTile(
           title: Text(details[position].description),
           subtitle: Text(subtitle),
+          trailing: IconButton(
+            icon: Icon(Icons.star, color: starColor),
+            onPressed: () {
+              toggleFavorite(details[position]);
+            },
+          ),
         );
       },
     );
@@ -77,5 +98,31 @@ class _EventListState extends State<EventList> {
     }).toList();
 
     return details;
+  }
+
+  void toggleFavorite(EventDetail ed) async {
+    print(ed.id);
+    if (isUserFavorite(ed.id!)) {
+      Favorite favorite =
+          favorites.firstWhere((Favorite f) => f.eventId == ed.id!);
+      await FirestoreHelper.deleteFavorite(favorite.id!);
+    } else {
+      await FirestoreHelper.addFavorite(ed, widget.uid);
+    }
+
+    List<Favorite> updatedFavorites =
+        await FirestoreHelper.getUserFavorites(widget.uid);
+    setState(() {
+      favorites = updatedFavorites;
+    });
+  }
+
+  bool isUserFavorite(String eventId) {
+    for (var favorite in favorites) {
+      if (favorite.eventId == eventId) {
+        return true;
+      }
+    }
+    return false;
   }
 }

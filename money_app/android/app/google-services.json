@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "802154487664",
+    "project_id": "mymoneyapp-5098a",
+    "storage_bucket": "mymoneyapp-5098a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802154487664:android:f4897c04d62d4cd8feb9b5",
+        "android_client_info": {
+          "package_name": "com.flutterflow.moneyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802154487664-ocl8o5pv149jf0v5bm8okcp71tqhpe35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutterflow.moneyapp",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "802154487664-32tbov3pq7bfs3g8hde6qsc2h6vt4efq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCbm_MiuvvZYZB0WIz9A1wMHKe0BYlwhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802154487664-32tbov3pq7bfs3g8hde6qsc2h6vt4efq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "802154487664-s73manh7382pincbf048lc95a4jmau4g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.moneyapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802154487664:android:a215e4b685fbbf03feb9b5",
+        "android_client_info": {
+          "package_name": "com.sancho6040.my_money_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802154487664-hi7jkkfl0jmomli3nf8npcm0qsdnd2tp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sancho6040.my_money_app",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "802154487664-32tbov3pq7bfs3g8hde6qsc2h6vt4efq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCbm_MiuvvZYZB0WIz9A1wMHKe0BYlwhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802154487664-32tbov3pq7bfs3g8hde6qsc2h6vt4efq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "802154487664-s73manh7382pincbf048lc95a4jmau4g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.moneyapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "802154487664",
+    "project_id": "mymoneyapp-5098a",
+    "storage_bucket": "mymoneyapp-5098a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802154487664:android:a215e4b685fbbf03feb9b5",
+        "android_client_info": {
+          "package_name": "com.sancho6040.my_money_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802154487664-32tbov3pq7bfs3g8hde6qsc2h6vt4efq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCbm_MiuvvZYZB0WIz9A1wMHKe0BYlwhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802154487664-32tbov3pq7bfs3g8hde6qsc2h6vt4efq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
